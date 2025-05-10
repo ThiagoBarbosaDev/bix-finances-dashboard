@@ -2,14 +2,13 @@
 "use client";
 
 import { useToast } from "@chakra-ui/react";
-import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { deleteCookieByKey, getCookieByKey } from "@/actions/cookies";
 import { COOKIES_KEYS } from "@/constants";
 
 const RedirectToast = () => {
   const toast = useToast();
-  const pathname = usePathname();
+
   useEffect(() => {
     const showCookieToast = async () => {
       const message = await getCookieByKey(COOKIES_KEYS.TOAST);
@@ -27,7 +26,7 @@ const RedirectToast = () => {
     };
 
     showCookieToast();
-  }, [toast, pathname]);
+  }, [toast]);
 
   return null;
 };
