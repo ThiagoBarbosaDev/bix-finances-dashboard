@@ -1,10 +1,5 @@
-import Button from "@/components/ui/Button";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return (
-    <div>
-      <main>Hello World!!</main>
-      <Button>Chakra Button</Button>
-    </div>
-  );
+  redirect("/login");
 }
