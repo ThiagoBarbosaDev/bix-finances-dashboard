@@ -2,7 +2,7 @@ import {
   LOGIN_ACTIONS,
   LOGIN_INITIAL_STATE,
 } from "@/features/login/contexts/constants";
-import { TLoginState, TLoginAction } from "@/features/login/contexts/types";
+import { TLoginAction, TLoginState } from "@/features/login/contexts/types";
 
 export const loginReducer = (
   state: TLoginState,

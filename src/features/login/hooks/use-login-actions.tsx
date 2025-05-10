@@ -1,6 +1,5 @@
 import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
-import { useContext } from "react";
 import {
   deleteCookieByKey,
   getCookieByKey,
@@ -8,25 +7,15 @@ import {
 } from "@/actions/cookies";
 import { COOKIES_KEYS, USERS } from "@/constants";
 import { LOGIN_ACTIONS } from "@/features/login/contexts/constants";
-import { LoginContext } from "@/features/login/contexts/login-context";
 import { dashboardPath } from "@/path";
+import { useLogin } from "../contexts/use-login";
 
 type TPersistUser = {
   email: string;
   password: string;
 };
 
-export const useLogin = () => {
-  const data = useContext(LoginContext);
-
-  if (!data) {
-    throw new Error("useLogin must be used inside of a login provider");
-  }
-
-  return data;
-};
-
-export const useLoginAction = () => {
+export const useLoginActions = () => {
   const [loginState, loginStateDispatch] = useLogin();
   const router = useRouter();
   const toast = useToast();

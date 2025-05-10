@@ -17,10 +17,10 @@ import {
   useState,
 } from "react";
 import Button from "@/components/ui/Button";
-import { useLoginAction } from "./hooks/use-login";
+import { useLoginActions } from "./hooks/use-login-actions";
 
 export const LoginForms = () => {
-  const { login } = useLoginAction();
+  const { login } = useLoginActions();
   const ref = useRef<HTMLInputElement>(null);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
