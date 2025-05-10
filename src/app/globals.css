@@ -7,6 +7,7 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --gradient-vibrant: linear-gradient(135deg, #3ec7e0, #7b2ff7, #f107a3);
   }
 }
 

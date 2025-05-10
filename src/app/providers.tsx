@@ -1,8 +1,13 @@
 // app/providers.tsx
 "use client";
 
+import { LoginStateProvider } from "@/features/login/contexts/login-context";
 import { ChakraProvider } from "@chakra-ui/react";
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  return <ChakraProvider>{children}</ChakraProvider>;
+  return (
+    <LoginStateProvider>
+      <ChakraProvider>{children}</ChakraProvider>
+    </LoginStateProvider>
+  );
 }
