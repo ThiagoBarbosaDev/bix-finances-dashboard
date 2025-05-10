@@ -1,11 +1,11 @@
 // src/components/redirect-toast.tsx
 "use client";
 
+import { useToast } from "@chakra-ui/react";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { deleteCookieByKey, getCookieByKey } from "@/actions/cookies";
-import { useToast } from "@chakra-ui/react";
 import { COOKIES_KEYS } from "@/constants";
-import { usePathname } from "next/navigation";
 
 const RedirectToast = () => {
   const toast = useToast();

@@ -1,7 +1,7 @@
 import { createContext, useMemo, useReducer } from "react";
 import { LOGIN_INITIAL_STATE } from "@/features/login/contexts/constants";
+import { loginReducer } from "@/features/login/contexts/login-reducer";
 import { TLoginContext } from "@/features/login/contexts/types";
-import { loginReducer } from "./login-reducer";
 
 export const LoginContext = createContext<TLoginContext>([
   LOGIN_INITIAL_STATE,

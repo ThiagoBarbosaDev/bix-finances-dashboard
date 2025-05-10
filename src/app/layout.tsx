@@ -1,9 +1,8 @@
-import type { Metadata } from "next";
-
 import "./globals.css";
-import { Providers } from "./providers";
-import { fonts } from "../styles/fonts";
+import type { Metadata } from "next";
 import { RedirectToast } from "@/components/redirect-toast";
+import { fonts } from "../styles/fonts";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: "Bix Finances Dashboard",

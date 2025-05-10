@@ -1,15 +1,15 @@
-import { useContext } from "react";
-import { LoginContext } from "@/features/login/contexts/login-context";
-import { COOKIES_KEYS, USERS } from "@/constants";
-import { LOGIN_ACTIONS } from "@/features/login/contexts/constants";
+import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
-import { dashboardPath } from "@/path";
+import { useContext } from "react";
 import {
   deleteCookieByKey,
   getCookieByKey,
   setCookieByKey,
 } from "@/actions/cookies";
-import { useToast } from "@chakra-ui/react";
+import { COOKIES_KEYS, USERS } from "@/constants";
+import { LOGIN_ACTIONS } from "@/features/login/contexts/constants";
+import { LoginContext } from "@/features/login/contexts/login-context";
+import { dashboardPath } from "@/path";
 
 type TPersistUser = {
   email: string;

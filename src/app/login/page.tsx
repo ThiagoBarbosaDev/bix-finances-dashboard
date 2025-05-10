@@ -1,7 +1,7 @@
-import LoginTitle from "@/features/login/login-title";
-import { LoginForms } from "@/features/login/login-forms";
-import { LoginBackdrop } from "@/features/login/login-backdrop";
 import { Flex } from "@chakra-ui/react";
+import { LoginBackdrop } from "@/features/login/login-backdrop";
+import { LoginForms } from "@/features/login/login-forms";
+import LoginTitle from "@/features/login/login-title";
 
 export default function Login() {
   return (
