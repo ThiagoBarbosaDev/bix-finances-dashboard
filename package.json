@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-        "type": "tsc --noEmit",
+    "type": "tsc --noEmit",
     "lint-fix": "next lint --fix"
   },
   "dependencies": {
@@ -15,6 +15,7 @@
     "@chakra-ui/react": "^2.10.7",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "big.js": "^7.0.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "framer-motion": "^12.10.5",
     "next": "14.2.28",
@@ -22,6 +23,7 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@types/big.js": "^6.2.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
