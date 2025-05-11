@@ -1,7 +1,5 @@
 import {
-  Box,
   Button,
-  Flex,
   FormControl,
   FormLabel,
   Input,
@@ -23,10 +21,11 @@ import {
   filterOptions,
   filterParse,
 } from "@/app/(authenticated)/dashboard/_filtering/filter-params";
-import { RemoveFilterTag } from "@/app/(authenticated)/dashboard/_filtering/remove-filter-tag";
 import { INDUSTRY_LIST, US_STATES } from "@/constants";
 import { formatDateToYYYYMMDD, getDateRangeFromPeriod } from "@/utils/dates";
 import { DatePicker } from "./date-picker";
+import { CogIcon } from "lucide-react";
+import { FilterTags } from "./filter-tags";
 
 export type TFilterState = {
   type: string;
@@ -80,12 +79,10 @@ const FilterComponent = () => {
       ...prev,
       [key]: "",
     }));
-    onClose();
   };
 
   const applyFilters = () => {
     setURLFilters({ ...URLFilters, ...filters });
-    onClose();
   };
 
   const onSelectDate = (range: DateRange | undefined) => {
@@ -102,16 +99,24 @@ const FilterComponent = () => {
   };
 
   return (
-    <Box>
+    <>
       <Popover
         isOpen={isOpen}
         onOpen={onOpen}
         onClose={onClose}
-        placement="bottom-start"
+        placement="right"
         isLazy
+        strategy="fixed"
       >
         <PopoverTrigger>
-          <Button colorScheme="blue">Filters</Button>
+          <Button
+            colorScheme="blue"
+            rightIcon={<CogIcon />}
+            padding="1"
+            iconSpacing={0}
+            variant="ghost"
+            rounded="none"
+          />
         </PopoverTrigger>
         <PopoverContent p={4} minW="350px">
           <PopoverArrow />
@@ -185,31 +190,15 @@ const FilterComponent = () => {
               <Button colorScheme="red" size="sm" onClick={resetFilters}>
                 Reset All
               </Button>
+              <FilterTags
+                filters={URLFilters}
+                onRemoveFilter={onRemoveFilter}
+              />
             </VStack>
           </PopoverBody>
         </PopoverContent>
       </Popover>
-      <Box mt={4} minH="24px">
-        <Flex gap={2} wrap="wrap">
-          {Object.entries(URLFilters).reduce<React.ReactElement[]>(
-            (acc, [key, value]) => {
-              if (value) {
-                acc.push(
-                  <RemoveFilterTag
-                    key={key}
-                    value={String(value)}
-                    valueKey={key as keyof TFilterState}
-                    onRemoveFilter={onRemoveFilter}
-                  />
-                );
-              }
-              return acc;
-            },
-            []
-          )}
-        </Flex>
-      </Box>
-    </Box>
+    </>
   );
 };
 
