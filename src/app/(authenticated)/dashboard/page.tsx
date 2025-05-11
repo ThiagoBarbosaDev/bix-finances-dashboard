@@ -1,7 +1,9 @@
 "use client";
 
 import { Spinner } from "@/components/spinner";
+import TransactionList from "@/features/transaction/components/transaction-list";
 import { useFetchTransactions } from "@/hooks/use-fetch-transactions";
+import FilterComponent from "./_filtering/filter";
 
 export default function Dashboard() {
   const { isPending } = useFetchTransactions();
@@ -9,7 +11,8 @@ export default function Dashboard() {
   return (
     <>
       <h1>dashboard</h1>
-      {isPending ? <Spinner /> : <div>Done Loading</div>}
+      <FilterComponent />
+      {isPending ? <Spinner /> : <TransactionList />}
     </>
   );
 }

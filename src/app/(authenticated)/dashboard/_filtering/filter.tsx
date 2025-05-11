@@ -1,0 +1,186 @@
+import {
+  Box,
+  Button,
+  Flex,
+  FormControl,
+  FormLabel,
+  Input,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
+  Select,
+  useDisclosure,
+  VStack,
+} from "@chakra-ui/react";
+import { useQueryStates } from "nuqs";
+import React, { useState } from "react";
+import { ITransaction } from "@/types";
+import { filterOptions, filterParse } from "./filter-params";
+import { RemoveFilterTag } from "./remove-filter-tag";
+import { INDUSTRY_LIST, US_STATES } from "@/constants";
+
+export type TFilterState = {
+  type: string;
+  industry: string;
+  account: string;
+  state: string;
+};
+
+const FILTER_INIT = {
+  type: "",
+  industry: "",
+  account: "",
+  state: "",
+};
+
+const FilterComponent = () => {
+  const [URLFilters, setURLFilters] = useQueryStates(
+    filterParse,
+    filterOptions
+  );
+
+  const [filters, setFilters] = useState<TFilterState>(() => ({
+    ...FILTER_INIT,
+    type: URLFilters.type,
+    industry: URLFilters.industry,
+    account: URLFilters.account,
+    state: URLFilters.state,
+  }));
+  const { onOpen, onClose, isOpen } = useDisclosure();
+
+  const updateFilter = (key: keyof TFilterState, value: string) => {
+    setFilters((prev) => ({
+      ...prev,
+      [key]: value || "",
+    }));
+  };
+
+  const resetFilters = () => {
+    setFilters(FILTER_INIT);
+  };
+
+  const onRemoveFilter = (key: keyof TFilterState) => {
+    setFilters((prev) => ({
+      ...prev,
+      [key]: "",
+    }));
+    setURLFilters((prev) => ({
+      ...prev,
+      [key]: "",
+    }));
+    onClose();
+  };
+
+  const applyFilters = () => {
+    setURLFilters({ ...URLFilters, ...filters });
+    onClose();
+  };
+
+  return (
+    <Box>
+      <Popover
+        isOpen={isOpen}
+        onOpen={onOpen}
+        onClose={onClose}
+        placement="bottom-start"
+      >
+        <PopoverTrigger>
+          <Button colorScheme="blue">Filters</Button>
+        </PopoverTrigger>
+        <PopoverContent p={4}>
+          <PopoverArrow />
+          <PopoverCloseButton />
+          <PopoverHeader>Filter Transactions</PopoverHeader>
+          <PopoverBody>
+            <VStack spacing={4} align="stretch">
+              <FormControl>
+                <FormLabel>Transaction Type</FormLabel>
+                <Select
+                  placeholder="Select type"
+                  value={filters.type || ""}
+                  onChange={(e) => updateFilter("type", e.target.value)}
+                >
+                  <option value="deposit">Deposit</option>
+                  <option value="withdraw">Withdraw</option>
+                </Select>
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Industry</FormLabel>
+                <Select
+                  placeholder="Select industry"
+                  value={filters.industry || ""}
+                  onChange={(e) => updateFilter("industry", e.target.value)}
+                >
+                  {INDUSTRY_LIST.map((industry) => (
+                    <option key={industry} value={industry}>
+                      {industry}
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>State</FormLabel>
+                <Select
+                  placeholder="Select state"
+                  value={filters.state || ""}
+                  onChange={(e) => updateFilter("state", e.target.value)}
+                >
+                  {US_STATES.map((state) => (
+                    <option key={state} value={state}>
+                      {state}
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Account</FormLabel>
+                <Input
+                  placeholder="Account name"
+                  value={filters.account || ""}
+                  onChange={(e) => updateFilter("account", e.target.value)}
+                />
+              </FormControl>
+
+              <Button colorScheme="blue" size="sm" onClick={applyFilters}>
+                Apply Filters
+              </Button>
+
+              <Button colorScheme="red" size="sm" onClick={resetFilters}>
+                Reset All
+              </Button>
+            </VStack>
+          </PopoverBody>
+        </PopoverContent>
+      </Popover>
+      <Box mt={4} minH="24px">
+        <Flex gap={2} wrap="wrap">
+          {Object.entries(URLFilters).reduce<React.ReactElement[]>(
+            (acc, [key, value]) => {
+              if (value) {
+                acc.push(
+                  <RemoveFilterTag
+                    key={key}
+                    value={String(value)}
+                    valueKey={key as keyof TFilterState}
+                    onRemoveFilter={onRemoveFilter}
+                  />
+                );
+              }
+              return acc;
+            },
+            []
+          )}
+        </Flex>
+      </Box>
+    </Box>
+  );
+};
+
+export default FilterComponent;
