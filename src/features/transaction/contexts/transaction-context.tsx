@@ -1,13 +1,13 @@
 "use client";
+import { useQueryStates } from "nuqs";
 import { createContext, useMemo, useReducer } from "react";
+import {
+  filterOptions,
+  filterParse,
+} from "@/app/(authenticated)/dashboard/_filtering/filter-params";
 import { TRANSACTION_INITIAL_STATE } from "@/features/transaction/contexts/constants";
 import { transactionReducer } from "@/features/transaction/contexts/transaction-reducer";
 import { TTransactionContext } from "@/features/transaction/contexts/types";
-import {
-  filterParse,
-  filterOptions,
-} from "@/app/(authenticated)/dashboard/_filtering/filter-params";
-import { useQueryStates } from "nuqs";
 
 type TTransactionContextProps = {
   children: React.ReactNode;
@@ -65,7 +65,7 @@ export const TransactionStateProvider = ({
         return isValid;
       }),
     };
-  }, [state.transactions, URLFilters]);
+  }, [state, URLFilters]);
 
   const memoTransactionData = useMemo(
     () => [filteredData, dispatch],
