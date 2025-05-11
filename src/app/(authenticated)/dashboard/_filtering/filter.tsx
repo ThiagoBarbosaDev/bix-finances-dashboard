@@ -18,9 +18,11 @@ import {
 } from "@chakra-ui/react";
 import { useQueryStates } from "nuqs";
 import React, { useState } from "react";
-import { ITransaction } from "@/types";
-import { filterOptions, filterParse } from "./filter-params";
-import { RemoveFilterTag } from "./remove-filter-tag";
+import {
+  filterOptions,
+  filterParse,
+} from "@/app/(authenticated)/dashboard/_filtering/filter-params";
+import { RemoveFilterTag } from "@/app/(authenticated)/dashboard/_filtering/remove-filter-tag";
 import { INDUSTRY_LIST, US_STATES } from "@/constants";
 
 export type TFilterState = {
