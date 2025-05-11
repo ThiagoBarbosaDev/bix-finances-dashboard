@@ -15,6 +15,7 @@
     "@chakra-ui/react": "^2.10.7",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@tanstack/react-virtual": "^3.13.8",
     "big.js": "^7.0.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "framer-motion": "^12.10.5",

@@ -1,8 +1,6 @@
+import { INDUSTRY_LIST, US_STATES } from "./constants";
+
 export interface ITransaction {
-  /**
-   * Unique identifier for the transaction
-   */
-  id: string;
   /**
    * Date of the transaction in milliseconds since epoch
    */
@@ -29,68 +27,9 @@ export interface ITransaction {
   /**
    * Category of the transaction
    */
-  industry:
-    | "Apparel"
-    | "Automotive Retailing"
-    | "Food Consumer Products"
-    | "Airlines"
-    | "Oil and Gas Equipment"
-    | "Hotels"
-    | "Education"
-    | "Computer Software"
-    | "Advertising";
+  industry: (typeof INDUSTRY_LIST)[number];
   /**
    * State where the transaction was made
    */
-  state:
-    | "AL"
-    | "AK"
-    | "AZ"
-    | "AR"
-    | "CA"
-    | "CO"
-    | "CT"
-    | "DE"
-    | "FL"
-    | "GA"
-    | "HI"
-    | "ID"
-    | "IL"
-    | "IN"
-    | "IA"
-    | "KS"
-    | "KY"
-    | "LA"
-    | "ME"
-    | "MD"
-    | "MA"
-    | "MI"
-    | "MN"
-    | "MS"
-    | "MO"
-    | "MT"
-    | "NE"
-    | "NV"
-    | "NH"
-    | "NJ"
-    | "NM"
-    | "NY"
-    | "NC"
-    | "ND"
-    | "OH"
-    | "OK"
-    | "OR"
-    | "PA"
-    | "RI"
-    | "SC"
-    | "SD"
-    | "TN"
-    | "TX"
-    | "UT"
-    | "VT"
-    | "VA"
-    | "WA"
-    | "WV"
-    | "WI"
-    | "WY";
+  state: (typeof US_STATES)[number];
 }
