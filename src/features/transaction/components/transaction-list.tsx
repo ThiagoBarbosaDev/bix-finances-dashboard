@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Text } from "@chakra-ui/react";
+import { Box, HStack, Text } from "@chakra-ui/react";
 import { VirtualizedList } from "@/components/virtualized-list";
 import { ITransaction } from "@/types";
 import { useTransaction } from "../contexts/use-transaction";
@@ -14,15 +14,15 @@ export default function TransactionList() {
   };
 
   return (
-    <Box p={4} maxW="330px">
-      <Text fontSize="2xl" mb={4} mx="auto" textAlign="center">
+    <Box p={4} w="330px">
+      <Text fontSize="2xl" mb={4} mx="auto" marginY="auto">
         Transactions
       </Text>
 
       <VirtualizedList
         items={transactionStore.transactions}
         itemHeight={130}
-        containerHeight="70vh"
+        containerHeight="calc(100% - 3rem)"
         renderItem={renderItem}
         containerProps={{ maxW: "300px" }}
       />
