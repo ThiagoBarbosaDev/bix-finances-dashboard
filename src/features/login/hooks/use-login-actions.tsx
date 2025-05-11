@@ -7,8 +7,8 @@ import {
 } from "@/actions/cookies";
 import { COOKIES_KEYS, USERS } from "@/constants";
 import { LOGIN_ACTIONS } from "@/features/login/contexts/constants";
-import { dashboardPath } from "@/path";
-import { useLogin } from "../contexts/use-login";
+import { dashboardPath, loginPath } from "@/path";
+import { useLogin } from "@/features/login/contexts/use-login";
 
 type TPersistUser = {
   email: string;
@@ -20,8 +20,8 @@ export const useLoginActions = () => {
   const router = useRouter();
   const toast = useToast();
 
-  const getLoggedUser = async (id: string) => {
-    return await getCookieByKey(id);
+  const getLoggedUser = async () => {
+    return await getCookieByKey(COOKIES_KEYS.USER);
   };
 
   const getUserByAuth = (email: string, password: string) => {
@@ -31,8 +31,8 @@ export const useLoginActions = () => {
 
     if (!user) {
       toast({
-        title: "Email ou senha inválidos",
-        description: "Verifique suas credenciais e tente novamente.",
+        title: "Invalid email or password",
+        description: "Verify your credentials and try again",
         status: "error",
         duration: 4000,
         isClosable: true,
@@ -48,17 +48,26 @@ export const useLoginActions = () => {
     if (user) {
       loginStateDispatch({ type: LOGIN_ACTIONS.LOGIN, payload: user });
       await setCookieByKey(COOKIES_KEYS.USER, user.id);
-      await setCookieByKey(COOKIES_KEYS.TOAST, "Login realizado com sucesso");
+      await setCookieByKey(
+        COOKIES_KEYS.TOAST,
+        `You have logged in successfully`
+      );
       router.push(dashboardPath());
     }
   };
 
   const logout = async () => {
     if (loginState.id) {
+      const userId = await getLoggedUser();
       loginStateDispatch({ type: LOGIN_ACTIONS.LOGOUT });
-      const userId = await getLoggedUser(loginState.id);
+
       if (userId) {
         deleteCookieByKey(userId);
+        await setCookieByKey(
+          COOKIES_KEYS.TOAST,
+          "You have logged out successfully"
+        );
+        router.push(loginPath());
       }
     }
   };
