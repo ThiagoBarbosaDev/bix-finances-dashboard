@@ -15,7 +15,6 @@ export const useFetchTransactions = () => {
       dispatch({ type: TRANSACTION_ACTIONS.SET_PENDING, payload: true });
       try {
         const transactions = await getTransactions();
-        console.log(transactions);
         dispatch({ type: TRANSACTION_ACTIONS.SET, payload: transactions });
       } catch (error) {
         if (error instanceof Error) {
