@@ -1,6 +1,6 @@
 export const USERS = [
   {
-    id: "0",
+    id: "1",
     email: "convidado@finances.com" as const,
     password: "bix9001" as const,
   },
