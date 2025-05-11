@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { NuqsAdapter } from "nuqs/adapters/next";
 import { fonts } from "../styles/fonts";
 import { Providers } from "./providers";
 
@@ -16,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${fonts.inter.variable} ${fonts.montserrat.variable}`}>
-        <Providers>{children}</Providers>
+        <NuqsAdapter>
+          <Providers>{children}</Providers>
+        </NuqsAdapter>
       </body>
     </html>
   );
