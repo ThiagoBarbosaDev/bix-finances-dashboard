@@ -29,10 +29,11 @@ export function DatePicker({
         fontSize="sm"
         colorScheme={isOpen ? "blue" : "gray"}
         marginBottom="8px"
+        textTransform="uppercase"
       >
         {selected
           ? `${selected.from?.toLocaleDateString()} - ${selected.to?.toLocaleDateString()}`
-          : "Select date range"}
+          : "Select"}
       </Button>
       {isOpen && (
         <DayPicker
