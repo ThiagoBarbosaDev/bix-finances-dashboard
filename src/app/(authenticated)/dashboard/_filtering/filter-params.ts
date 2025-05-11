@@ -9,16 +9,12 @@ export const amountFilterParse = {
   operator: parseAsString.withDefault(""),
 };
 
-export const dateRangeFilterParse = {
-  startDate: parseAsInteger.withDefault(0),
-  endDate: parseAsInteger.withDefault(0),
-};
-
 export const filterParse = {
   type: parseAsString.withDefault(""),
   account: parseAsString.withDefault(""),
   industry: parseAsString.withDefault(""),
   state: parseAsString.withDefault(""),
+  period: parseAsString.withDefault(""),
 };
 
 export const filterOptions = {
@@ -39,7 +35,6 @@ export const dateRangeFilterOptions = {
 export const searchParamsCache = createSearchParamsCache({
   ...filterParse,
   ...amountFilterParse,
-  ...dateRangeFilterParse,
 });
 
 export type ParsedSearchParams = Awaited<

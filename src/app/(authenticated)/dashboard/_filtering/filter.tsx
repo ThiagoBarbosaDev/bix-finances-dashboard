@@ -18,18 +18,22 @@ import {
 } from "@chakra-ui/react";
 import { useQueryStates } from "nuqs";
 import React, { useState } from "react";
+import { DateRange } from "react-day-picker";
 import {
   filterOptions,
   filterParse,
 } from "@/app/(authenticated)/dashboard/_filtering/filter-params";
 import { RemoveFilterTag } from "@/app/(authenticated)/dashboard/_filtering/remove-filter-tag";
 import { INDUSTRY_LIST, US_STATES } from "@/constants";
+import { formatDateToYYYYMMDD, getDateRangeFromPeriod } from "@/utils/dates";
+import { DatePicker } from "./date-picker";
 
 export type TFilterState = {
   type: string;
   industry: string;
   account: string;
   state: string;
+  period: string;
 };
 
 const FILTER_INIT = {
@@ -37,6 +41,7 @@ const FILTER_INIT = {
   industry: "",
   account: "",
   state: "",
+  period: "",
 };
 
 const FilterComponent = () => {
@@ -51,6 +56,7 @@ const FilterComponent = () => {
     industry: URLFilters.industry,
     account: URLFilters.account,
     state: URLFilters.state,
+    period: URLFilters.period,
   }));
   const { onOpen, onClose, isOpen } = useDisclosure();
 
@@ -82,6 +88,19 @@ const FilterComponent = () => {
     onClose();
   };
 
+  const onSelectDate = (range: DateRange | undefined) => {
+    setFilters((prev) => ({
+      ...prev,
+      period: range
+        ? `${range.from ? formatDateToYYYYMMDD(range.from) : ""}_${
+            range.to ? formatDateToYYYYMMDD(range.to) : ""
+          }`
+        : "",
+    }));
+
+    return range;
+  };
+
   return (
     <Box>
       <Popover
@@ -89,11 +108,12 @@ const FilterComponent = () => {
         onOpen={onOpen}
         onClose={onClose}
         placement="bottom-start"
+        isLazy
       >
         <PopoverTrigger>
           <Button colorScheme="blue">Filters</Button>
         </PopoverTrigger>
-        <PopoverContent p={4}>
+        <PopoverContent p={4} minW="350px">
           <PopoverArrow />
           <PopoverCloseButton />
           <PopoverHeader>Filter Transactions</PopoverHeader>
@@ -147,6 +167,14 @@ const FilterComponent = () => {
                   placeholder="Account name"
                   value={filters.account || ""}
                   onChange={(e) => updateFilter("account", e.target.value)}
+                />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Date Range</FormLabel>
+                <DatePicker
+                  onSelect={onSelectDate}
+                  selected={getDateRangeFromPeriod(filters.period)}
                 />
               </FormControl>
 
