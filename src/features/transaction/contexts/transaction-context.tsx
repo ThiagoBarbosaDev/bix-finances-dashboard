@@ -1,4 +1,5 @@
 "use client";
+import { isValid as isDateValid, isWithinInterval, parseISO } from "date-fns";
 import { useQueryStates } from "nuqs";
 import { createContext, useMemo, useReducer } from "react";
 import {
@@ -59,6 +60,30 @@ export const TransactionStateProvider = ({
           isValid = URLFilters.type === transaction.transaction_type;
           if (!isValid) {
             return isValid;
+          }
+        }
+
+        if (URLFilters.period) {
+          const [startDateStr, endDateStr] = URLFilters.period.split("_");
+
+          if (startDateStr && endDateStr) {
+            const startDate = parseISO(startDateStr);
+            const endDate = parseISO(endDateStr);
+            const transactionDate = new Date(transaction.date);
+
+            if (
+              isDateValid(startDate) &&
+              isDateValid(endDate) &&
+              isDateValid(transactionDate)
+            ) {
+              isValid = isWithinInterval(transactionDate, {
+                start: startDate,
+                end: endDate,
+              });
+              if (!isValid) {
+                return false;
+              }
+            }
           }
         }
 
