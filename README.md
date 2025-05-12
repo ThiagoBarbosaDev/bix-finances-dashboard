@@ -1,5 +1,3 @@
-:brazilian_flag: # Brazilian Portuguese
-
 # BIX Finances Dashboard
 
 Um dashboard interativo para visualização e análise de transações financeiras, construído com Next.js e Chakra UI.
@@ -64,24 +62,6 @@ Destaque para a performance otimizada com o uso de TanStack Virtual, que garante
    ```
 
 4. Acesse a aplicação em `http://localhost:3000`
-
-## Estrutura do Projeto
-
-```
-bix-finances-dashboard/
-├── src/
-│   ├── app/                  # Rotas e layouts do Next.js App Router
-│   ├── components/           # Componentes reutilizáveis
-│   ├── features/             # Funcionalidades organizadas por domínio
-│   │   ├── sidebar/          # Navegação lateral
-│   │   ├── transaction/      # Listagem e visualização de transações
-│   │   └── login/            # Autenticação e login
-│   ├── hooks/                # Custom hooks
-│   ├── types/                # Definições de tipos TypeScript
-│   └── utils/                # Funções utilitárias
-├── public/                   # Arquivos estáticos
-└── ...
-```
 
 ## Considerações de Implementação
 
