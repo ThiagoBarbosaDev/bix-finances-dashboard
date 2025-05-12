@@ -8,6 +8,7 @@ export const useAuthGuard = () => {
   const router = useRouter();
   const { getLoggedUser } = useLoginActions();
   const [isPending, setIsPending] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     const authGuard = async () => {
@@ -19,12 +20,18 @@ export const useAuthGuard = () => {
           COOKIES_KEYS.TOAST,
           `You must be logged in to access this page`
         );
-        router.push("/login");
+        router.replace("/login");
         setIsPending(false);
+        return;
       }
+      
+      // User is authenticated
+      setIsAuthenticated(true);
+      setIsPending(false);
     };
+    
     authGuard();
   }, [getLoggedUser, router]);
 
-  return { isPending };
+  return { isPending, isAuthenticated };
 };

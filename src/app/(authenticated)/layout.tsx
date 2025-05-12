@@ -1,25 +1,42 @@
 "use client";
 
 import { Box, Flex, useBreakpointValue } from "@chakra-ui/react";
+import { Suspense } from "react";
+import { useAuthGuard } from "@/app/(authenticated)/use-auth-guard";
+import { Spinner } from "@/components/spinner";
 import Sidebar from "@/features/sidebar/components/sidebar";
 import { TransactionStateProvider } from "@/features/transaction/contexts/transaction-context";
 import { ChartStateProvider } from "./dashboard/_charts/contexts/chart-context";
-import { Suspense } from "react";
 
 export default function AuthenticatedLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { isPending, isAuthenticated } = useAuthGuard();
   const isMobile = useBreakpointValue({ base: true, md: false });
 
+  // Show spinner while checking authentication
+  if (isPending) {
+    return (
+      <Flex width="100%" height="100vh" justifyContent="center" alignItems="center">
+        <Spinner />
+      </Flex>
+    );
+  }
+
+  // Don't render anything if not authenticated (redirecting will happen in the hook)
+  if (!isAuthenticated) {
+    return null;
+  }
+
+  // Only render the actual content when authenticated
   return (
     <Suspense fallback={<Box>Loading...</Box>}>
       <TransactionStateProvider>
         <ChartStateProvider>
           <Flex width="100%" height="100vh">
             <Sidebar />
-
             <Box
               as="main"
               ml={isMobile ? "0px" : "50px"}
