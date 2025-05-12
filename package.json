@@ -16,6 +16,7 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@nivo/bar": "^0.94.0",
+    "@nivo/line": "^0.94.0",
     "@tanstack/react-virtual": "^3.13.8",
     "big.js": "^7.0.1",
     "date-fns": "^4.1.0",

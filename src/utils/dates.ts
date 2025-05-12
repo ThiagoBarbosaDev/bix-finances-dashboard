@@ -1,4 +1,4 @@
-import { format, parseISO } from "date-fns";
+import { format, getMonth, getYear, parseISO } from "date-fns";
 import { DateRange } from "react-day-picker";
 
 /**
@@ -38,3 +38,13 @@ export const getDateRangeFromPeriod = (
 export const formatDateToYYYYMMDD = (date: Date) => {
   return format(date, "yyyy-MM-dd");
 };
+
+/**
+ * Converts timestamp to YYYY-MM-DD
+ * @param dateString: string in YYYY-TTrimester format
+ */
+export function getTrimesterKey(timestamp: number) {
+  const date = new Date(timestamp); // convert timestamp to Date
+  const trimester = Math.floor(getMonth(date) / 3) + 1; // getMonth is 0-based
+  return `${getYear(date)}-T${trimester}`;
+}

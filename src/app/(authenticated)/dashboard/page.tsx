@@ -4,13 +4,13 @@ import { Flex, Text } from "@chakra-ui/react";
 import { Spinner } from "@/components/spinner";
 import TransactionList from "@/features/transaction/components/transaction-list";
 import { useFetchTransactions } from "@/hooks/use-fetch-transactions";
-import { TransactionStackedBarChart } from "./_charts/stacked-bar-chart";
+import { ChartMediator } from "./_charts/chart-mediator";
 
 export default function Dashboard() {
   const { isPending } = useFetchTransactions();
 
   return (
-    <Flex minH="100svh" flexDirection="column" alignItems="center">
+    <Flex minH="100%" flexDirection="column" alignItems="center">
       <Flex
         as="header"
         width="100%"
@@ -48,8 +48,14 @@ export default function Dashboard() {
         justifyContent="center"
         height="90svh"
       >
-        {!isPending && <TransactionStackedBarChart />}
-        {isPending ? <Spinner /> : <TransactionList />}
+        {isPending ? (
+          <Spinner />
+        ) : (
+          <>
+            <ChartMediator />
+            <TransactionList />
+          </>
+        )}
       </Flex>
     </Flex>
   );
