@@ -144,19 +144,18 @@ export const TransactionStackedBarChart = () => {
   }
 
   return (
-    <Flex width="100%" h="100%" maxW="1400px" flexDirection="column">
-      <HStack>
-        <Text
-          as="h2"
-          fontFamily="var(--font-montserrat)"
-          fontSize="2xl"
-          width="100%"
-          textAlign="center"
-          marginTop="2rem"
-        >
-          Trade Volume - Stacked Bars
-        </Text>
-      </HStack>
+    <Flex width="70vw" h="100%" maxW="1400px" flexDirection="column">
+      <Text
+        as="h2"
+        fontFamily="var(--font-montserrat)"
+        fontSize="2xl"
+        width="100%"
+        textAlign="center"
+        marginTop="2rem"
+      >
+        Trade Volume - Stacked Bars
+      </Text>
+
       <StackedBarChart data={processedData} />
     </Flex>
   );

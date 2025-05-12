@@ -11,6 +11,7 @@ import {
   PopoverHeader,
   PopoverTrigger,
   Select,
+  useBreakpointValue,
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
@@ -98,6 +99,8 @@ const FilterComponent = () => {
     return range;
   };
 
+  const isMobile = useBreakpointValue({ base: true, md: false });
+
   return (
     <>
       <Popover
@@ -118,7 +121,16 @@ const FilterComponent = () => {
             rounded="none"
           />
         </PopoverTrigger>
-        <PopoverContent p={4} minW="350px">
+        <PopoverContent
+          p={4}
+          minW="350px"
+          marginLeft={isMobile ? "-70px" : "0px"}
+          marginTop={isMobile ? "0px" : "0px"}
+          borderRadius="md"
+          boxShadow="lg"
+          overflowY="scroll"
+          overflowX="auto"
+        >
           <PopoverArrow />
           <PopoverCloseButton />
           <PopoverHeader>Filter Transactions</PopoverHeader>

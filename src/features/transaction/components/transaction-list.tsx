@@ -14,7 +14,7 @@ export default function TransactionList() {
   };
 
   return (
-    <Box p={4} w="330px">
+    <Box p={4}>
       <Text fontSize="2xl" mb={4} mx="auto" marginY="auto">
         Transactions
       </Text>
@@ -24,7 +24,7 @@ export default function TransactionList() {
         itemHeight={130}
         containerHeight="calc(100% - 3rem)"
         renderItem={renderItem}
-        containerProps={{ maxW: "300px" }}
+        containerProps={{ w: "max(330px, 20vw)" }}
       />
     </Box>
   );

@@ -5,7 +5,16 @@ import { useChartState } from "@/app/(authenticated)/dashboard/_charts/contexts/
 import FilterComponent from "@/app/(authenticated)/dashboard/_filtering/filter";
 
 import { useLoginActions } from "@/features/login/hooks/use-login-actions";
-import { Box, Button, Divider, Tooltip, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Divider,
+  HStack,
+  Tooltip,
+  useBreakpointValue,
+  VStack,
+} from "@chakra-ui/react";
+import { bg } from "date-fns/locale";
 import { ChartBarBigIcon, LineChartIcon, LogOutIcon } from "lucide-react";
 
 export default function Sidebar() {
@@ -19,9 +28,11 @@ export default function Sidebar() {
   const onClickLineChart = () => {
     dispatch({ type: CHART_ACTIONS.SET, payload: "line" });
   };
+  const isMobile = useBreakpointValue({ base: true, md: false });
+  const Tag = isMobile ? HStack : VStack;
 
   const SidebarContent = (
-    <VStack align="stretch">
+    <Tag align="stretch" alignContent="stretch" spacing="0">
       <Tooltip label="Logout" placement="right">
         <Button
           colorScheme="blue"
@@ -33,9 +44,17 @@ export default function Sidebar() {
           onClick={logout}
         />
       </Tooltip>
-      <Divider orientation="horizontal" colorScheme="blue" borderWidth="2px" />
+      <Divider
+        orientation={isMobile ? "vertical" : "horizontal"}
+        colorScheme="blue"
+        borderWidth="2px"
+      />
       <FilterComponent />
-      <Divider orientation="horizontal" colorScheme="blue" borderWidth="2px" />
+      <Divider
+        orientation={isMobile ? "vertical" : "horizontal"}
+        colorScheme="blue"
+        borderWidth="2px"
+      />
       <Tooltip label="Stack Bars" placement="right">
         <Button
           rounded="none"
@@ -60,7 +79,7 @@ export default function Sidebar() {
           isActive={state.graph === "line"}
         />
       </Tooltip>
-    </VStack>
+    </Tag>
   );
 
   return (
@@ -70,13 +89,15 @@ export default function Sidebar() {
       top="0"
       left="0"
       zIndex="sticky"
-      h="full"
+      bgColor="white.700"
+      w={isMobile ? "100vw" : "50px"}
+      h={isMobile ? "40px" : "100vh"}
       overflowX="hidden"
       overflowY="auto"
       bg="white.700"
       borderColor="blue.700"
-      borderRightWidth="2px"
-      w="50px"
+      borderRightWidth={isMobile ? "0" : "2px"}
+      borderBottomWidth={isMobile ? "2px" : "0"}
     >
       {SidebarContent}
     </Box>
