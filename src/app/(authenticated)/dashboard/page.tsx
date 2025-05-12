@@ -39,7 +39,7 @@ export default function Dashboard() {
           lineHeight="1.2"
           textTransform="capitalize"
         >
-          Financial Dashboard
+          Bix Finances
         </Text>
       </Flex>
       <Flex
