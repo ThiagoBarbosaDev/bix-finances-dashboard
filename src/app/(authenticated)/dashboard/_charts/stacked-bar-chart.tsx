@@ -18,6 +18,7 @@ const StackedBarChart = ({ data }: StackedBarChartProps) => {
       data={data}
       enableLabel={false}
       enableGridY={false}
+      animate={false}
       enableGridX={true}
       keys={["deposit", "withdraw"]}
       indexBy="industry"
@@ -151,6 +152,7 @@ export const TransactionStackedBarChart = () => {
           fontSize="2xl"
           width="100%"
           textAlign="center"
+          marginTop="2rem"
         >
           Trade Volume - Stacked Bars
         </Text>
