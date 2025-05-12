@@ -1,5 +1,3 @@
-:brazilian_flag: # Brazilian Portuguese
-
 # BIX Finances Dashboard
 
 Um dashboard interativo para visualização e análise de transações financeiras, construído com Next.js e Chakra UI.
@@ -65,24 +63,6 @@ Destaque para a performance otimizada com o uso de TanStack Virtual, que garante
 
 4. Acesse a aplicação em `http://localhost:3000`
 
-## Estrutura do Projeto
-
-```
-bix-finances-dashboard/
-├── src/
-│   ├── app/                  # Rotas e layouts do Next.js App Router
-│   ├── components/           # Componentes reutilizáveis
-│   ├── features/             # Funcionalidades organizadas por domínio
-│   │   ├── sidebar/          # Navegação lateral
-│   │   ├── transaction/      # Listagem e visualização de transações
-│   │   └── login/            # Autenticação e login
-│   ├── hooks/                # Custom hooks
-│   ├── types/                # Definições de tipos TypeScript
-│   └── utils/                # Funções utilitárias
-├── public/                   # Arquivos estáticos
-└── ...
-```
-
 ## Considerações de Implementação
 
 - Por que não utilizei styled-components?
@@ -115,66 +95,3 @@ Para questões ou sugestões, entre em contato com a equipe de desenvolvimento e
 ---
 
 Desenvolvido com ❤️ por Thiago Barbosa @ 2025
-
-
-BIX Finances Dashboard
-An interactive dashboard for visualization and analysis of financial transactions, built with Next.js and Chakra UI.
-
-Overview
-BIX Finances Dashboard is a modern web application for monitoring financial transactions, providing intuitive visualizations and advanced filtering tools. It allows you to track deposits and withdrawals across different industry sectors, offering valuable insights into financial flow.
-
-The application features optimized performance using TanStack Virtual, ensuring a fluid experience even with large volumes of data.
-
-Key Features
-Data Visualization: Stacked bar charts and line charts for transaction analysis
-Advanced Filtering: Filters by transaction type, industry, state, and date period
-Virtualized Transaction List: Optimized performance even with large datasets
-Stacked Bar Chart: Visualization of deposits and withdrawals by sector
-Line Chart: Analysis of deposits and withdrawals over time
-Performance: Use of TanStack Virtual for efficient rendering of long lists, allowing ultra-fast real-time filtering on the client side
-Login: Login screen with basic authentication (JWT implementation planned), uses the default user convidado@finances.com and password bix9001
-Logout: Logout functionality to end the user's session
-Technologies
-Frontend: Next.js, React, TypeScript
-Styling: Chakra UI (using Emotion for CSS-in-JS)
-Charts: Nivo Charts
-Virtualization: TanStack Virtual
-State Management: React Context API, nuqs
-Navigation: Next.js App Router
-Installation and Execution
-Requirements
-Node.js 18 or higher
-npm, yarn or pnpm
-Instructions
-Clone the repository:
-
-Install the dependencies:
-
-Run the project in development mode:
-
-Access the application at http://localhost:3000
-
-Project Structure
-Implementation Considerations
-Why I didn't use styled-components:
-
-Chakra UI already has a built-in CSS-in-JS solution using Emotion, which is highly optimized and integrated with the design system. This avoids the need to configure and maintain another styling library, simplifying the development process and ensuring consistency in the application style.
-Styled-components is being deprecated soon and is no longer recommended for new projects, as it's in maintenance mode.
-Why I didn't use Redux/Zustand:
-
-State management with React Context API and nuqs is sufficient for the project's needs, maintaining simplicity and avoiding the additional complexity that libraries like Redux or Zustand can bring.
-The use of nuqs allows for a lighter and more direct approach to state management, especially in smaller or medium-sized applications, where the overhead of Redux may be unnecessary.
-Roadmap
-Finalize the implementation of responsiveness for mobile devices
-Improve user experience
-Improve accessibility
-Implementation of JWT authentication and/or Single Sign-On (SSO)
-Implement a RESTful API for data persistence with a database
-Export reports in PDF and Excel formats
-Add more visualization types (pie charts, heat maps)
-Automated testing (unit tests with vitest, integration with RTL, e2e with playwright)
-License
-This project does not have a specific license, but it is free to use for educational and development purposes. Feel free to fork the project.
-
-Contact
-For questions or suggestions, contact the development team at email@example.com.
