@@ -1,5 +1,6 @@
 import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
+import { useCallback } from "react";
 import {
   deleteCookieByKey,
   getCookieByKey,
@@ -20,9 +21,9 @@ export const useLoginActions = () => {
   const router = useRouter();
   const toast = useToast();
 
-  const getLoggedUser = async () => {
+  const getLoggedUser = useCallback(async () => {
     return await getCookieByKey(COOKIES_KEYS.USER);
-  };
+  }, []);
 
   const getUserByAuth = (email: string, password: string) => {
     const user = USERS.find(
@@ -72,5 +73,5 @@ export const useLoginActions = () => {
     }
   };
 
-  return { login, logout };
+  return { login, logout, getLoggedUser };
 };

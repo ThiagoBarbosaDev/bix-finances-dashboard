@@ -1,32 +1,16 @@
-import { Heading, VStack } from "@chakra-ui/react";
-import Image from "next/image";
+import { Heading } from "@chakra-ui/react";
 
 const loginTitle = () => {
   return (
-    <VStack
-      w="100%"
-      gap={0}
-      alignItems="center"
-      justifyContent="center"
-      h="100svh"
+    <Heading
+      as="h1"
+      fontSize="6xl"
+      textAlign="center"
+      fontWeight="bold"
+      color="white"
     >
-      <Heading
-        as="h1"
-        size="2xl"
-        fontSize={{ base: "2xl", md: "4xl", lg: "6xl" }}
-        textAlign="center"
-      >
-        Bix Finances
-      </Heading>
-      <Image
-        width={300}
-        height={300}
-        priority={true}
-        src="/art.png"
-        alt="Finances art"
-        quality={10}
-      />
-    </VStack>
+      Bix Finances
+    </Heading>
   );
 };
 

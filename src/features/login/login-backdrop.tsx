@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { SimpleGrid } from "@chakra-ui/react";
 
 interface LoginBackdropProps {
   children: React.ReactNode;
@@ -6,10 +6,12 @@ interface LoginBackdropProps {
 
 export const LoginBackdrop = ({ children }: LoginBackdropProps) => {
   return (
-    <Box
-      style={{ minHeight: "100svh" }}
-      w="50%"
+    <SimpleGrid
+      placeItems="center"
+      minH="100svh"
+      w="full"
       color="white"
+      gridGap={1}
       sx={{
         background: "var(--gradient-vibrant)",
         backgroundSize: "400% 400%",
@@ -22,6 +24,6 @@ export const LoginBackdrop = ({ children }: LoginBackdropProps) => {
       }}
     >
       {children}
-    </Box>
+    </SimpleGrid>
   );
 };

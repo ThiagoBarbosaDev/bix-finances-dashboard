@@ -6,7 +6,6 @@ import {
   FormLabel,
   Heading,
   Input,
-  SimpleGrid,
   Stack,
 } from "@chakra-ui/react";
 import {
@@ -18,6 +17,8 @@ import {
 } from "react";
 import Button from "@/components/ui/Button";
 import { useLoginActions } from "./hooks/use-login-actions";
+import { LoginBackdrop } from "./login-backdrop";
+import LoginTitle from "./login-title";
 
 export const LoginForms = () => {
   const { login } = useLoginActions();
@@ -50,45 +51,60 @@ export const LoginForms = () => {
     login({ email, password });
   };
   return (
-    <SimpleGrid zIndex={1} textAlign="center" w="50%" placeItems="center">
-      <Box
-        maxW="md"
-        mx="auto"
-        mt="20"
-        p="8"
-        borderRadius="lg"
-        boxShadow="lg"
-        bg="white"
-        fontFamily="var(--font-montserrat)"
-      >
-        <Heading
-          textAlign="center"
-          fontSize="2xl"
-          fontFamily={"inherit"}
-          textTransform={"uppercase"}
+    <LoginBackdrop>
+      <Box>
+        <LoginTitle />
+        <Stack
+          justify={"center"}
+          alignItems="center"
+          spacing="12"
+          p="4"
+          mx="auto"
+          bg="white"
+          maxW={{ base: "90vw", md: "400px" }}
+          minH={{ base: "50vh", md: "40vh" }}
+          w="full"
+          borderRadius="2xl"
+          mt="1rem"
         >
-          Login
-        </Heading>
-
-        <Stack spacing="12" p="4">
+          <Heading
+            textAlign="center"
+            fontSize="2xl"
+            fontWeight="bold"
+            color="black"
+            fontFamily="var(--font-montserrat)"
+            textTransform={"uppercase"}
+          >
+            Login
+          </Heading>
           <form
             onSubmit={handleSubmit}
             style={{ display: "flex", gap: "2rem", flexDirection: "column" }}
           >
             <FormControl isRequired>
-              <FormLabel fontFamily="inherit">Username</FormLabel>
+              <FormLabel fontFamily="inherit" color="black">
+                Username
+              </FormLabel>
               <Input
                 placeholder="Enter your email"
                 onChange={handleChangeEmail}
                 ref={ref}
+                color="black"
+                type="email"
+                autoComplete="email"
+                autoFocus
+                required
               />
             </FormControl>
-            <FormControl isRequired>
+            <FormControl isRequired color="black">
               <FormLabel fontFamily="inherit">Password</FormLabel>
               <Input
                 type="password"
                 placeholder="Enter your password"
                 onChange={handleChangePassword}
+                color="black"
+                autoComplete="current-password"
+                required
               />
             </FormControl>
             <Button
@@ -103,6 +119,6 @@ export const LoginForms = () => {
           </form>
         </Stack>
       </Box>
-    </SimpleGrid>
+    </LoginBackdrop>
   );
 };
