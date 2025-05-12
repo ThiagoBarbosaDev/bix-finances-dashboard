@@ -1,4 +1,4 @@
-import { Flex, HStack, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import { ResponsiveBar } from "@nivo/bar";
 import { useMemo } from "react";
 import { useTransaction } from "@/features/transaction/contexts/use-transaction";

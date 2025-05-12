@@ -1,7 +1,7 @@
 import { Box, Flex } from "@chakra-ui/react";
 import React from "react";
-import { RemoveFilterTag } from "./remove-filter-tag";
 import { TFilterState } from "./filter";
+import { RemoveFilterTag } from "./remove-filter-tag";
 
 interface FilterTagsProps {
   filters: Record<string, string | undefined>;

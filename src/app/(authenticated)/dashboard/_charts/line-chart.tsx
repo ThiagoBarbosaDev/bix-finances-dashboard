@@ -2,8 +2,8 @@ import { Flex, HStack, Text } from "@chakra-ui/react";
 import { ResponsiveLine } from "@nivo/line";
 import { useMemo } from "react";
 import { useTransaction } from "@/features/transaction/contexts/use-transaction";
-import { getTrimesterKey } from "@/utils/dates";
 import { toCurrencyFromCent } from "@/utils/currency";
+import { getTrimesterKey } from "@/utils/dates";
 
 export const LineChart = () => {
   const [store] = useTransaction();

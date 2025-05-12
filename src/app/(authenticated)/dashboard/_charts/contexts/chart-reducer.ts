@@ -1,5 +1,5 @@
-import { IChartState, TChartAction } from "./types";
 import { CHART_ACTIONS } from "./constants";
+import { IChartState, TChartAction } from "./types";
 
 export const chartReducer = (
   state: IChartState,

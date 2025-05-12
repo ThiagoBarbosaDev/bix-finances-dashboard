@@ -1,7 +1,7 @@
 import { createContext, useMemo, useReducer } from "react";
-import { TChartContext } from "@/app/(authenticated)/dashboard/_charts/contexts/types";
 import { chartReducer } from "@/app/(authenticated)/dashboard/_charts/contexts/chart-reducer";
 import { CHART_INITIAL_STATE } from "@/app/(authenticated)/dashboard/_charts/contexts/constants";
+import { TChartContext } from "@/app/(authenticated)/dashboard/_charts/contexts/types";
 
 export const ChartContext = createContext<TChartContext>([
   CHART_INITIAL_STATE,

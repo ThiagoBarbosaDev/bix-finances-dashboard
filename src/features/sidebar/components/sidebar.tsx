@@ -1,10 +1,5 @@
 "use client";
 
-import { CHART_ACTIONS } from "@/app/(authenticated)/dashboard/_charts/contexts/constants";
-import { useChartState } from "@/app/(authenticated)/dashboard/_charts/contexts/use-chart-state";
-import FilterComponent from "@/app/(authenticated)/dashboard/_filtering/filter";
-
-import { useLoginActions } from "@/features/login/hooks/use-login-actions";
 import {
   Box,
   Button,
@@ -14,8 +9,11 @@ import {
   useBreakpointValue,
   VStack,
 } from "@chakra-ui/react";
-import { bg } from "date-fns/locale";
 import { ChartBarBigIcon, LineChartIcon, LogOutIcon } from "lucide-react";
+import { CHART_ACTIONS } from "@/app/(authenticated)/dashboard/_charts/contexts/constants";
+import { useChartState } from "@/app/(authenticated)/dashboard/_charts/contexts/use-chart-state";
+import FilterComponent from "@/app/(authenticated)/dashboard/_filtering/filter";
+import { useLoginActions } from "@/features/login/hooks/use-login-actions";
 
 export default function Sidebar() {
   const [state, dispatch] = useChartState();

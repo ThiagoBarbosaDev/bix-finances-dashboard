@@ -1,9 +1,8 @@
 "use client";
 
 import { Box, Flex, useBreakpointValue } from "@chakra-ui/react";
-import { TransactionStateProvider } from "@/features/transaction/contexts/transaction-context";
 import Sidebar from "@/features/sidebar/components/sidebar";
-
+import { TransactionStateProvider } from "@/features/transaction/contexts/transaction-context";
 import { ChartStateProvider } from "./dashboard/_charts/contexts/chart-context";
 
 export default function AuthenticatedLayout({

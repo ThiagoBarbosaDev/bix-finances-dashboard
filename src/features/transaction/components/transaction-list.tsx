@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, HStack, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { VirtualizedList } from "@/components/virtualized-list";
 import { ITransaction } from "@/types";
 import { useTransaction } from "../contexts/use-transaction";

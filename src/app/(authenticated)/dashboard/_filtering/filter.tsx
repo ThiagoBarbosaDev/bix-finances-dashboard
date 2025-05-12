@@ -15,6 +15,7 @@ import {
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
+import { CogIcon } from "lucide-react";
 import { useQueryStates } from "nuqs";
 import React, { useState } from "react";
 import { DateRange } from "react-day-picker";
@@ -25,7 +26,6 @@ import {
 import { INDUSTRY_LIST, US_STATES } from "@/constants";
 import { formatDateToYYYYMMDD, getDateRangeFromPeriod } from "@/utils/dates";
 import { DatePicker } from "./date-picker";
-import { CogIcon } from "lucide-react";
 import { FilterTags } from "./filter-tags";
 
 export type TFilterState = {

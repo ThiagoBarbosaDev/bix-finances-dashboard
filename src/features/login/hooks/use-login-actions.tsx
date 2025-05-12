@@ -7,8 +7,8 @@ import {
 } from "@/actions/cookies";
 import { COOKIES_KEYS, USERS } from "@/constants";
 import { LOGIN_ACTIONS } from "@/features/login/contexts/constants";
-import { dashboardPath, loginPath } from "@/path";
 import { useLogin } from "@/features/login/contexts/use-login";
+import { dashboardPath, loginPath } from "@/path";
 
 type TPersistUser = {
   email: string;
