@@ -21,10 +21,10 @@ const loginTitle = () => {
       <Image
         width={300}
         height={300}
-        priority={false}
+        priority={true}
         src="/art.png"
-        alt="Finanças e Negócios"
-        quality={100}
+        alt="Finances art"
+        quality={10}
       />
     </VStack>
   );
