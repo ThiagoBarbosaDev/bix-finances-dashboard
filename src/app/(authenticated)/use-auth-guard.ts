@@ -24,12 +24,10 @@ export const useAuthGuard = () => {
         setIsPending(false);
         return;
       }
-      
       // User is authenticated
       setIsAuthenticated(true);
       setIsPending(false);
     };
-    
     authGuard();
   }, [getLoggedUser, router]);
 

@@ -16,21 +16,23 @@ export default function AuthenticatedLayout({
   const { isPending, isAuthenticated } = useAuthGuard();
   const isMobile = useBreakpointValue({ base: true, md: false });
 
-  // Show spinner while checking authentication
+  if (!isAuthenticated) {
+    return null;
+  }
+
   if (isPending) {
     return (
-      <Flex width="100%" height="100vh" justifyContent="center" alignItems="center">
+      <Flex
+        width="100%"
+        height="100vh"
+        justifyContent="center"
+        alignItems="center"
+      >
         <Spinner />
       </Flex>
     );
   }
 
-  // Don't render anything if not authenticated (redirecting will happen in the hook)
-  if (!isAuthenticated) {
-    return null;
-  }
-
-  // Only render the actual content when authenticated
   return (
     <Suspense fallback={<Box>Loading...</Box>}>
       <TransactionStateProvider>

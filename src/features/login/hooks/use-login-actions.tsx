@@ -63,7 +63,7 @@ export const useLoginActions = () => {
       loginStateDispatch({ type: LOGIN_ACTIONS.LOGOUT });
 
       if (userId) {
-        deleteCookieByKey(userId);
+        await deleteCookieByKey(COOKIES_KEYS.USER);
         await setCookieByKey(
           COOKIES_KEYS.TOAST,
           "You have logged out successfully"
