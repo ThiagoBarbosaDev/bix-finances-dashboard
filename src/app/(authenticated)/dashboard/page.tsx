@@ -2,6 +2,7 @@
 
 import { Flex, Text, useBreakpointValue } from "@chakra-ui/react";
 import { Spinner } from "@/components/spinner";
+import { Summary } from "@/features/summary/components/summary";
 import TransactionList from "@/features/transaction/components/transaction-list";
 import { useFetchTransactions } from "@/hooks/use-fetch-transactions";
 import { ChartMediator } from "./_charts/chart-mediator";
@@ -43,11 +44,12 @@ export default function Dashboard() {
           Bix Finances
         </Text>
       </Flex>
+      <Summary />
       <Flex
         width={"100%"}
         flexDirection={"row"}
         justifyContent="center"
-        height="90svh"
+        height="calc(90svh - 135px)"
       >
         {isPending ? (
           <Spinner />
